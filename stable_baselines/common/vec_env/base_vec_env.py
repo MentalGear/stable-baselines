@@ -146,7 +146,7 @@ class VecEnv(ABC):
         :param actions: ([int] or [float]) the action
         :return: ([int] or [float], [float], [bool], dict) observation, reward, done, information
         """
-        assert isinstance( actions, ( list, np.ndarray ) ), "Action must be of type list or np.ndarray. Try wrapping your action variable in a list [ ] to fix this issue."
+        assert isinstance( actions,( list, np.ndarray ) ), "Action must be of type list or np.ndarray. Try wrapping your action variable in a list [ ] to fix this issue."
         self.step_async(actions)
         return self.step_wait()
 
