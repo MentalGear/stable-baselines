@@ -129,16 +129,18 @@ def check_step_assert_error(env, new_step_return=()):
 
 def test_action_format ( env, action ):
     """
-    Helper to check that the error is caught.
+    Test if action format check works
     :param env: (gym.Env)
-    :param new_step_return: (tuple)
+    :param action: (list, array)
     """
 
+    env = gym.make('CartPole-v0')
+
     with pytest.raises(TypeError):
-        step( 0 )
+        env.step( action )
 
     with pytest.raises(not TypeError):
-        step( [ 0 ] )
+        env.step( [ action ] )
 
 
 def test_common_failures_step():
