@@ -127,6 +127,20 @@ def check_step_assert_error(env, new_step_return=()):
         check_env(env)
 
 
+def test_action_format ( env, action ):
+    """
+    Helper to check that the error is caught.
+    :param env: (gym.Env)
+    :param new_step_return: (tuple)
+    """
+
+    with pytest.raises(TypeError):
+        step( 0 )
+
+    with pytest.raises(not TypeError):
+        step( [ 0 ] )
+
+
 def test_common_failures_step():
     """
     Test that common failure cases of the `step` method are caught
@@ -147,3 +161,6 @@ def test_common_failures_step():
     # Done is not a boolean
     check_step_assert_error(env, (env.observation_space.sample(), 0.0, 3.0, {}))
     check_step_assert_error(env, (env.observation_space.sample(), 0.0, 1, {}))
+
+    # action format must be [] or np.ndarray
+    test_action_format ( env, 0 )
